@@ -1,0 +1,31 @@
+services:
+  webservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - DOTNET_URLS=http://+:80
+      - RedisConnection=redis-container:6379
+      - DefaultConnection=server=mysql-container;user=root;password=passw0rd;database=testdb
+    depends_on:
+      - redis
+      - mysql
+
+  redis:
+    image: redis:latest
+    container_name: redis-container
+    ports:
+      - "6379:6379"
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: passw0rd
+      MYSQL_DATABASE: testdb
+    ports:
+      - "3306:3306"
+    volumes:
+    - ./mysql-init:/docker-entrypoint-initdb.d

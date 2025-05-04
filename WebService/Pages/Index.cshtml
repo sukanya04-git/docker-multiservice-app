@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To Docker Basics Assignment</h1>
+    <p>Learn about how we use multi-service application and run using docker image and compose.</a>.</p>
+</div>
+<h1>Hello from Frontend!</h1>
+<p>Go to <a href="/api/sample">/api/sample</a> to test the backend API.</p>
+<p>Go to <a href="/api/sample/mysql">/api/sample/mysql</a> to test mysql connection.</p>
+<p>Go to <a href="/api/sample/redis">/api/sample/redis</a> to test redis connection.</p>
+<p>Redis + MySql:</p>
+<input type="number" id="userId" placeholder="Enter User ID" value="1" />
+<button id="fetchUserBtn">Fetch User</button>
+
+<div id="result" style="margin-top:20px; font-family:monospace;"></div>
+<script>
+    document.getElementById('fetchUserBtn').addEventListener('click', async () => {
+        const userId = document.getElementById('userId').value;
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerText = 'Loading...';
+
+        try {
+            const response = await fetch(`/api/sample/user/${userId}`);
+            if (!response.ok) throw new Error('Request failed');
+
+            const data = await response.json();
+            resultDiv.innerText = `Source: ${data.source}\nData: ${data.data}`;
+        } catch (error) {
+            resultDiv.innerText = 'Error fetching user: ' + error.message;
+        }
+    });
+</script>
