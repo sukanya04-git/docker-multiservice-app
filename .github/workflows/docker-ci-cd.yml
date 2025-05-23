@@ -24,9 +24,10 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
-        context: .
+        context: ./WebService
+        file: ./WebService/Dockerfile
         push: true
-        tags: sukanya04/webservice:advanced
+        tags: ${{ secrets.DOCKER_USERNAME }}/webservice:advanced
 
     - name: Deploy with Docker Compose
-      run: docker-compose -f docker-compose.yml up -d
+      run: docker-compose -f ./WebService/docker-compose.yml up -d
