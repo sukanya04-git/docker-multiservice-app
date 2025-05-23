@@ -5,13 +5,15 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
-    environment:
-      - DOTNET_URLS=http://+:80
-      - RedisConnection=redis-container:6379
-      - DefaultConnection=server=mysql-container;user=root;password=passw0rd;database=testdb
+    env_file:
+      - .env
     depends_on:
       - redis
       - mysql
+    read_only: true
+    cap_drop:
+      - ALL
+    user: "1000:1000"  # matches non-root user ID
 
   redis:
     image: redis:latest
@@ -22,9 +24,8 @@ services:
   mysql:
     image: mysql:latest
     container_name: mysql-container
-    environment:
-      MYSQL_ROOT_PASSWORD: passw0rd
-      MYSQL_DATABASE: testdb
+    env_file:
+      - .env
     ports:
       - "3306:3306"
     volumes:

@@ -1,3 +1,5 @@
+# Docker Basic and Advance Assignment
+
 # Docker Basics Assignment
 
 This is a multi-service application using:
@@ -82,3 +84,26 @@ Visit http://localhost:8080
 /api/sample/mysql → MySQL check
 /api/sample/redis → Redis check
 /api/sample/user/{id} → MySQL + Redis combined
+
+
+# Docker Advance Assignment 
+
+## Optimization 
+1. Multi-stage Dockerfile
+2. versioning 
+
+## Security Hardening 
+1. **Non-Root Docker User**: App runs as a system user inside the container.
+2. **.dockerignore**: Sensitive files are excluded from Docker context.
+3. **Environment Variables**: Secrets are moved to `.env` file (should not be pushed to GitHub).
+4. **Read-only Filesystem**: The container’s root is read-only.
+5. **Dropped Linux Capabilities**: The container has minimal Linux privileges.
+
+### 🚀 CI/CD Pipeline
+- GitHub Actions used for building and pushing Docker images on branch push.
+- Secrets stored in GitHub Actions.
+- Image Tag: `sukanya04/webservice:advanced`
+
+### 🔗 Links
+- [GitHub Branch (Advanced)](https://github.com/sukanya04-git/docker-multiservice-app/tree/advanced-docker-assignment)
+- [Docker Hub Image (Advanced)](https://hub.docker.com/repository/docker/sukanya04/webservice/tags)
