@@ -107,3 +107,9 @@ Visit http://localhost:8080
 ### 🔗 Links
 - [GitHub Branch (Advanced)](https://github.com/sukanya04-git/docker-multiservice-app/tree/advanced-docker-assignment)
 - [Docker Hub Image (Advanced)](https://hub.docker.com/repository/docker/sukanya04/webservice/tags)
+
+
+## 📸 Screenshot of CI CD pipeline and dockerhub new image :advanced
+/home/sukanya04/multi-service-app/App-Screenshots
+![App Screenshot7](./App-Screenshots/Screenshot7.png)
+![App Screenshot8](./App-Screenshots/Screenshot8.png)
