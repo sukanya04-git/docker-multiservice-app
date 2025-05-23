@@ -30,4 +30,4 @@ jobs:
         tags: ${{ secrets.DOCKER_USERNAME }}/webservice:advanced
 
     - name: Deploy with Docker Compose
-      run: docker-compose -f ./WebService/docker-compose.yml up -d
+      run: docker compose -f ./WebService/docker-compose.yml up -d
